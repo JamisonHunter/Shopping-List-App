@@ -3,37 +3,41 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Home</title> 
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.3/css/bulma.min.css">
+    <title>Home</title>
+    <!-- Include Tailwind CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <!-- Include Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
 </head>
 <body>
-    <nav class="navbar" role="navigation" aria-label="main navigation">
-        <div class="navbar-brand">
-            <a class="navbar-item" href="#">
-                <h1 class="title is-4">Shopping Lists</h1>
-            </a>
-        </div>
+    <nav class="bg-gray-800 shadow-lg" role="navigation" aria-label="main navigation">
+        <div class="container mx-auto px-6 py-3">
+            <div class="flex justify-between items-center">
+                <div class="flex items-center">
+                    <a class="navbar-brand text-lg font-semibold text-white" href="#">
+                        Shopping Lists
+                    </a>
+                </div>
 
-        <div class="navbar-menu is-active">
-            <div class="navbar-end">
-                <a class="navbar-item" href="#">Home</a>
-                <a class="navbar-item" href="#">About</a>
-                <a class="navbar-item" href="#">
-                    <span class="icon">
-                        <i class="fab fa-github"></i>    
-                    </span>
-                </a>
-                <a class="navbar-item" href="#">
-                    <span class="icon">
-                        <i class="fab fa-linkedin"></i>    
-                    </span>
-                </a>
-                <label class="navbar-item">
-                    <input type="checkbox" id="darkmode-toggle" checked/>
-                </label>
+                <div class="flex items-center">
+                    <a class="navbar-item text-gray-300 mr-4" href="#">Home</a>
+                    <a class="navbar-item text-gray-300 mr-4" href="#">About</a>
+                    <a class="navbar-item text-gray-300 mr-4" href="#">
+                        <span class="icon">
+                            <i class="fab fa-github"></i>
+                        </span>
+                    </a>
+                    <a class="navbar-item text-gray-300" href="#">
+                        <span class="icon">
+                            <i class="fab fa-linkedin"></i>
+                        </span>
+                    </a>
+                </div>
             </div>
         </div>
     </nav>
+    <div>
+        <img src = "{{ image['Image URL'] }}"/>
+    </div>
 </body>
 </html>

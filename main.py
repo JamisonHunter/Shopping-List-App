@@ -1,13 +1,19 @@
 # Imports
 from flask import Flask, render_template
+from pymongo import MongoClient
+import creds
 
 app = Flask(__name__)
 
-# TODO: Connect to MongoDB client
+# Connecting to MongoDB.
+client = MongoClient(creds.MONGO_URI)
+db = client["astronomy"]
+collection = db["apod"]
 
 @app.route("/")
 def home():
-    return render_template("index.html")
+    image = collection.find_one()
+    return render_template("index.html", image = image)
 
 # TODO: Define CRUD routes
 
