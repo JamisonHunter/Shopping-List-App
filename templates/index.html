@@ -3,41 +3,34 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Home</title>
-    <!-- Include Tailwind CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
-    <!-- Include Font Awesome -->
+    <title>Shopping Lists</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
 </head>
 <body>
-    <nav class="bg-gray-800 shadow-lg" role="navigation" aria-label="main navigation">
-        <div class="container mx-auto px-6 py-3">
-            <div class="flex justify-between items-center">
-                <div class="flex items-center">
-                    <a class="navbar-brand text-lg font-semibold text-white" href="#">
-                        Shopping Lists
-                    </a>
-                </div>
-
-                <div class="flex items-center">
-                    <a class="navbar-item text-gray-300 mr-4" href="#">Home</a>
-                    <a class="navbar-item text-gray-300 mr-4" href="#">About</a>
-                    <a class="navbar-item text-gray-300 mr-4" href="#">
-                        <span class="icon">
-                            <i class="fab fa-github"></i>
-                        </span>
-                    </a>
-                    <a class="navbar-item text-gray-300" href="#">
-                        <span class="icon">
-                            <i class="fab fa-linkedin"></i>
-                        </span>
-                    </a>
-                </div>
-            </div>
-        </div>
-    </nav>
     <div>
-        <img src = "{{ image['Image URL'] }}"/>
+        <!-- Form to add a new shopping list -->
+        <form action="/add_date" method="post">
+            <input type="text" name="date" placeholder="Enter date (e.g., May 7)">
+            <button type="submit">Create Shopping List</button>
+        </form>
+
+        <!-- Display existing shopping lists -->
+        <ul>
+            {% for list in lists %}
+            <li>{{ list.Date }} - 
+                <form action="/add_item/{{ list._id }}" method="post">
+                    <input type="text" name="item" placeholder="Enter item">
+                    <button type="submit">Add Item</button>
+                </form>
+                <ul>
+                    {% for item in list.Items %}
+                    <li>{{ item }} <a href="/delete_item/{{ list._id }}/{{ loop.index0 }}">Delete</a></li>
+                    {% endfor %}
+                </ul>
+            </li>
+            {% endfor %}
+        </ul>
     </div>
 </body>
 </html>
